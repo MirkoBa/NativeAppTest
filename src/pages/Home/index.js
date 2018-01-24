@@ -33,8 +33,11 @@ const deviceWidth = Dimensions.get("window").width;
 const phonenumber = '+43 7242 4910';
 const email_adress = 'info.wels@ssi-schaefer.com';
 
-class Home extends Component {
 
+/*
+This class represents the StartPage of the App
+*/
+class Home extends Component {
 
   constructor(){
     super()
@@ -59,7 +62,7 @@ class Home extends Component {
 
 
   //sets states of the Object to the incoming json data
-  componentDidMount(){    //will always be executed when the HomeScreen will be addressed
+  componentDidMount(){   
     this.getData('https://api.myjson.com/bins/14aapl', 'data');   //the data state represents the data of the top carousel
     this.getData('https://api.myjson.com/bins/6bd8x', 'infos');  //the infos state represents the data of the Info Texts on StartPage
     this.getData('https://api.myjson.com/bins/rm8i1', 'news');    //the news state represents the data of the news on StartPage
@@ -173,7 +176,7 @@ class Home extends Component {
 
 
     /*
-    in this return statement al the above delcared parts are returned
+    in this return statement all the above delcared parts are returned
     all parts are bundelded in a container
     first of all the header includes a menu sidebar, which contains all primary routes of the app
     the secound element ist the carouselview - this includes images and short text information

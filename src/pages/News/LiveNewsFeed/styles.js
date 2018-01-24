@@ -13,9 +13,13 @@ export default {
   card_header:{
       backgroundColor: '#efd915',
   },
-  content:{
-    alignItems:'center',
-    justifyContent: 'center',
+  content_left:{
+    alignItems:'flex-start',
+    paddingLeft: 5,
+  },
+  content_right:{
+    alignItems:'flex-end',
+    paddingRight: 5,
   },
   title:{
     fontWeight: 'bold',

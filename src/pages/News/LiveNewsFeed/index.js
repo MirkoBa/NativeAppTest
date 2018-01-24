@@ -18,13 +18,21 @@ import {
 
 import {TouchableOpacity} from 'react-native';
 
-//allows to use calls and e-mail
+//allows to use calls, e-mail and the browser
 import Communications from 'react-native-communications';
 
 import styles from "./styles";
 
+//transforming data into JSON
 var parseString = require('react-native-xml2js').parseString;
 
+
+/*
+This class renders all the data coming from a XML NewsFeed
+The XML is fetched as text and transformed to JSON via the package 'xml2js'
+Via the Communications package E-Mail address from the XML will not only be text but can be used
+the titles of the cards are clickable urls
+*/
 class LiveNewsFeed extends Component {
 
   constructor(props){
@@ -60,13 +68,20 @@ class LiveNewsFeed extends Component {
 
   render() {
 
+    /*
+    because the fetching of the XML and parsing it to JSON takes longer as wished, null will be returned to wait for data (ready state is false)
+    when fetching and parsing is done the state is set to true and the data is mapped to a card view
+    the render statement can fire the return of null multiple times until the state is set to true
+    */
     if(!this.state.ready){
       return null;
     }
     else{
       let news_text = this.state.news.rss.channel[0].item.map(function(news_text, index){
         return(
-            <Card style={styles.card} key={index}>
+          //switching orientation from left to right in relation to the index
+          <View key={index} style={[styles.content_left, (index%2==1) && styles.content_right ]}>
+            <Card style={styles.card}>
               <View style={styles.card_header}>
                   <TouchableOpacity onPress={() => Communications.web(news_text.link[0])}>
                       <Text style={styles.title}>{news_text.title}</Text>
@@ -83,6 +98,7 @@ class LiveNewsFeed extends Component {
                   <Text style={styles.contact_text}>{news_text.locations[0].location}</Text>
                 </View>
             </Card>
+          </View>
         )
       });
 
@@ -104,9 +120,7 @@ class LiveNewsFeed extends Component {
         </Header>
 
         <Content scrollEnabled={true}>
-          <View style={styles.content}>
             {news_text}
-          </View>
         </Content>
       </Container>
       );

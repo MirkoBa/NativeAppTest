@@ -5,10 +5,7 @@ const deviceWidth = Dimensions.get("window").width;
 
 
 export default {
-
-  container: {
-    backgroundColor: "#FFF",
-  },
+    
   text:{
     fontSize: deviceHeight*0.02,
     padding: 5,
@@ -31,21 +28,12 @@ export default {
     margin: 5,
     padding: 5,
   },
-  gehaltstext:{
-    fontSize: deviceHeight*0.02,
-    fontWeight: 'bold',
-    paddingBottom: 5,
-    fontStyle: 'italic'
-  },
   p:{
     color: '#7c7f82',
     fontSize: deviceHeight*0.02,
     paddingTop: 5,
   },
-  hyperlinks:{
-    fontSize: deviceHeight*0.025,
-    color: '#2980b9',
-  },container: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#F5FCFF',
@@ -75,4 +63,12 @@ export default {
   inactive: {
     backgroundColor: 'rgba(245,245,245,0.9)',
   },
+  title_box:{
+    flex:1,
+    alignItems: 'flex-start',
+    justifyContent: 'space-around',
+    padding: 5,
+    margin: 5,
+    backgroundColor: '#efd915',
+  }
 };

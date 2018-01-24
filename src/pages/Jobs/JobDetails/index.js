@@ -30,19 +30,26 @@ import Accordion from 'react-native-collapsible/Accordion';
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
-
+/*
+This class renders the given data from the job overview in detail
+the data is presented in collapsible sections
+a MapView with the position of the job is rendered after the collapsible sections
+*/
 class JobDetails extends Component {
 
+  //is set when a section is clicked
   state = {
     activeSection: false,
     collapsed: true,
   };
 
 
+  //sets the collapsed state when element is clicked
   _toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
+  //sets the activeSection state when element is clicked
   _setSection(section) {
     this.setState({ activeSection: section });
   }
@@ -63,6 +70,9 @@ class JobDetails extends Component {
     );
   }
 
+  /*
+  This function extract every line of the given array and returns it as one String
+  */
   getLines(path){
     var answerString="";
       for (var i = 0; i < path.length; i++){
@@ -80,12 +90,17 @@ class JobDetails extends Component {
 
   render(){
 
+    //this represents the given JobData from the job, which has been clicked in the Job overview
     var {params} = this.props.navigation.state;
 
+
+    //sets variables for the different content sections
     const qualifikation = this.getLines(params.job.Qualifikation);
     const angebote = this.getLines(params.job.Angebot);
     const aufgaben = this.getLines(params.job.Aufgaben);
 
+
+    //sets the content to each collapsible section
     const CONTENT = [
       {
         title: 'Beschreibung:',
@@ -139,7 +154,7 @@ class JobDetails extends Component {
               <Image style={styles.jobimage} source={{uri: params.job.image}} />
             </View>
 
-            <View style={{flex:1, alignItems: 'flex-start', justifyContent: 'space-around', padding: 5, margin: 5, backgroundColor: '#efd915'}}>
+            <View style={styles.title_box}>
                 <Text style={styles.titleText}>{params.job.title}</Text>
                 <Text style={styles.text}>Beschäftigung: {params.job.beschaeftigung} </Text>
                 <Text style={styles.text}>Fachbereich: {params.job.fachbereich} </Text>

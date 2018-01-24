@@ -15,6 +15,10 @@ console.ignoredYellowBox = [
   'Setting a timer'
 ];
 
+
+/*
+This var stores all needed data to interact with firebase
+*/
 const firebaseConfig = {
   apiKey: "AIzaSyAGGN3DGwYFP5FyQ-ASN6eKjBzX8HuWn7E",
   authDomain: "testpushnotifications-69fe5.firebaseapp.com",
@@ -24,6 +28,7 @@ const firebaseConfig = {
   messagingSenderId: "931917352103"
 };
 
+//initializes App with the given config
 firebase.initializeApp(firebaseConfig);
 
 
@@ -60,6 +65,7 @@ class Login extends Component {
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
 
+    //stores data to firebase database. Every user has an entry with its ExpoPushToken and teh email address
     var updates = {}
     updates['/expoToken'] = token
     updates['/userEmail'] = user.email
@@ -67,19 +73,26 @@ class Login extends Component {
 
   }
 
+  //saves the user to the Authentication section in Firebase
   signUpUser = (email,password) => {
-      try{
         if(password.length<6){
           alert("Passwort muss mindestens 6 Zeichen haben")
           return;
         }
-        firebase.auth().createUserWithEmailAndPassword(email,password);
-        alert("Hi " + email + " - account registerd");
-      }catch(error){
-        console.log(error.toString())
-      }
+        firebase.auth().createUserWithEmailAndPassword(email,password)
+        .then(() =>{
+            alert ("Hello " + email + " u have been successfully registered");
+            this.loginUser(email, password);
+        })
+        .catch(() =>{
+            alert ("Authentication failed");
+            return;
+        })
   }
 
+
+
+  //checks firebase for Authentication
   loginUser = (email,password) => {
     try{
       firebase.auth().signInWithEmailAndPassword(email,password).then(user => {

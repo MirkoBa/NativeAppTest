@@ -22,7 +22,10 @@ import styles from "./styles";
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
-
+/*
+This class represents a card view of all jobs
+For detailed informations to each job the card can be clicked
+*/
 class Jobs extends Component {
 
   constructor(){
@@ -46,10 +49,15 @@ class Jobs extends Component {
 
 
   //sets states of the Object to the incoming json data
-  componentDidMount(){    //will always be executed when the HomeScreen will be addressed
-    this.getData('https://api.myjson.com/bins/jlogl', 'data');   //represents the data of the top carousel
+  componentDidMount(){
+    this.getData('https://api.myjson.com/bins/jlogl', 'data');
   }
 
+
+  /*
+  The image of each card will be clickable and triggers a navigation to JobDetails
+  the data of the clicked Job will be passed via prop to JobDetails
+  */
   render() {
 
       return(
@@ -70,6 +78,8 @@ class Jobs extends Component {
             </Body>
             <Right />
           </Header>
+
+
 
           <Content scrollEnabled={true}>
             {this.state.data.map((jobData, index) => (
