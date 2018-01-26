@@ -40,7 +40,10 @@ export default class Todos extends React.Component {
       "Ladezeiten beim fetchen von Daten?",
       "Mit XML & JSON darauf achten: By default, iOS will block any request that's not encrypted using SSL",
       "Stack-Navigation routet mit zurück nicht richtig - geht nur auf die StartPage",
-      "Smartphone orientation"
+      "Smartphone orientation",
+      "Test mit installierter App",
+      "Performance",
+      "Header als Klasse"
     ];
 
     let view = todos.map(function(todo,index){

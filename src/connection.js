@@ -42,7 +42,7 @@ class connection extends Component {
     await checkConnection().then(response =>
         this.setState({connection: response})
     );
-    var prom = isAvailable('http://10.151.9.28:3000/News');
+    var prom = isAvailable('https://httpstat.us/300');
 
     //if the response of the server contains no status but just the set integer 666 - set the status to 666
     await prom.then(response => {
@@ -55,40 +55,32 @@ class connection extends Component {
         }
     });
 
-
-    //if server responses with 200er code set json state
-    if(this.state.status == 200 )
-    {
-      return prom
-      .then((response) => response.json())
-      .then((responseJSON) =>{
-        this.setState({json: responseJSON});
-      })
-    }
-
   }
 
   render() {
+
+    let header =
+      <Header>
+        <Left>
+          <Button
+            transparent
+            onPress={() => this.props.navigation.navigate("DrawerOpen")}
+          >
+            <Icon name="ios-menu" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Verbindungstest</Title>
+        </Body>
+        <Right />
+      </Header>
 
 
     //if internetconnection established and server does not answer
     if (this.state.connection && this.state.status == 666){
       return(
         <Container>
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Verbindungstest</Title>
-            </Body>
-            <Right />
-          </Header>
+          {header}
           <Content>
             <View >
               <Text>Server nicht erreichbar</Text>
@@ -101,35 +93,11 @@ class connection extends Component {
     else if (this.state.connection && this.state.status == 200 ){
       return(
         <Container>
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>rechne JSON</Title>
-            </Body>
-            <Right />
-          </Header>
+          {header}
           <Content>
-          {this.state.json.map((news, index) => (
-
-            <View key={index} style={{flex:1, alignItems: 'flex-start', justifyContent: 'space-around', flexDirection: 'row', padding: 5, margin:5}}>
-                <View>
-                  <View style={{marginLeft: 5}}>
-                    <Text>{news.title} </Text>
-                    <Text>{news.date}</Text>
-                    <Text>{news.previewText}</Text>
-                  </View>
-                </View>
-
-            </View>
-
-          ))}
+            <Text>
+              Status 200 OK
+            </Text>
           </Content>
         </Container>
     );}
@@ -137,24 +105,12 @@ class connection extends Component {
     //if internetconnection established and server does answer with error
     else if (this.state.connection && this.state.status != 200 && this.state.status != 666){
       return(
+
         <Container>
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Verbindungstest</Title>
-            </Body>
-            <Right />
-          </Header>
+          {header}
           <Content>
             <View >
-              <Text>Error: {this.state.status}</Text>
+              <Text>Status: {this.state.status}</Text>
             </View>
           </Content>
         </Container>
@@ -164,23 +120,10 @@ class connection extends Component {
     else if(!this.state.connection){
       return(
         <Container>
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>keine verbindung</Title>
-            </Body>
-            <Right />
-          </Header>
+          {header}
           <Content>
             <View >
-              <Text>{this.state.status}</Text>
+              <Text>Keine Internetverbindung</Text>
             </View>
           </Content>
         </Container>

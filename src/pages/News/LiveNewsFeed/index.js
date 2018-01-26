@@ -31,7 +31,6 @@ var parseString = require('react-native-xml2js').parseString;
 var previewUrl = 'https://test-preview.ssi-schaefer.com/blueprint/servlet/service/rss/en-de/80522/feed.rss';
 var serverUrl = 'https://www.ssi-schaefer.com/service/rss/de-at/91694/feed.rss';
 
-var httpStati = 'https://httpstat.us/305';
 
 
 /*
