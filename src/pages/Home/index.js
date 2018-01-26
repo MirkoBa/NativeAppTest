@@ -62,7 +62,7 @@ class Home extends Component {
 
 
   //sets states of the Object to the incoming json data
-  componentDidMount(){   
+  componentDidMount(){
     this.getData('https://api.myjson.com/bins/14aapl', 'data');   //the data state represents the data of the top carousel
     this.getData('https://api.myjson.com/bins/6bd8x', 'infos');  //the infos state represents the data of the Info Texts on StartPage
     this.getData('https://api.myjson.com/bins/rm8i1', 'news');    //the news state represents the data of the news on StartPage
@@ -200,7 +200,7 @@ class Home extends Component {
             </Button>
           </Left>
           <Body>
-            <Title >Home</Title>
+            <Title>Home</Title>
           </Body>
           <Right />
         </Header>

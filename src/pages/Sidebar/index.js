@@ -43,7 +43,13 @@ const datas = [
     route: "Login",
     icon: "person",
     bf: "#C5F442",
-  }
+  },
+  {
+    name: "Verbindungstest",
+    route: "connection",
+    icon: "list",
+    bg: "#C5F442"
+  },
 
 ];
 

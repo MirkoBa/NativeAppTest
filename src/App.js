@@ -11,6 +11,8 @@ import Todos from './pages/Todos/';
 import Login from './boot/LoginScreen';
 import SideBar from './pages/Sidebar';
 
+import connection from './connection'
+
 import LiveNewsFeed from './pages/News/LiveNewsFeed/';
 
 const Drawer = DrawerNavigator(
@@ -21,6 +23,7 @@ const Drawer = DrawerNavigator(
     Todos: {screen: Todos},
     Login : {screen: Login},
     LiveNewsFeed : {screen: LiveNewsFeed},
+    connection : {screen: connection}
   },
   {
   initialRouteName: "Home",
@@ -35,7 +38,7 @@ const AppNavigator = StackNavigator(
   {
     Drawer: { screen: Drawer },
     JobDetails: {screen: JobDetails},
-    NewsDetails : {screen: NewsDetails}
+    NewsDetails : {screen: NewsDetails},
   },
   {
     initialRouteName: "Drawer",

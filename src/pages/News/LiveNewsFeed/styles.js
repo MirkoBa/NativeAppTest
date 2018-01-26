@@ -50,5 +50,11 @@ export default {
     paddingLeft: 5,
     fontSize: deviceHeight*0.02,
     fontWeight: 'bold',
+  },
+  servermsg:{
+    margin:5,
+    padding:5,
+    fontSize: deviceHeight*0.03,
+    fontWeight: 'bold',
   }
 };

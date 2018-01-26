@@ -13,18 +13,22 @@ import {
   Right,
   Body,
   View,
-  Card
+  Card,
+  Spinner
 } from "native-base";
 
 import {TouchableOpacity} from 'react-native';
+import {checkConnection, isAvailable} from '../../../helpers/helpers' ;
 
 //allows to use calls, e-mail and the browser
 import Communications from 'react-native-communications';
 
 import styles from "./styles";
 
+
 //transforming data into JSON
 var parseString = require('react-native-xml2js').parseString;
+var serverUrl = 'https://test-preview.ssi-schaefer.com/blueprint/servlet/service/rss/en-de/80522/feed.rss';
 
 
 /*
@@ -38,31 +42,50 @@ class LiveNewsFeed extends Component {
   constructor(props){
     super(props)
     this.state = {
+      connection: false,
+      status: "",
       news:[],
       ready: false
     }
   }
 
   //fetches the XML data from a specific url to a specific state variable and parses it to JSON
-  getData(url, status){
-    return fetch(url)
+  async getData(url, status){
+    await fetch(url)
     .then((response) => response.text())
     .then((response) =>{
     parseString(response, (err, result) => {
-      this.setState({[status]: result});
-      this.setState({ready: true});
-    });
+        this.setState({[status]: result});
+        this.setState({ready: true});
+      });
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
+  async componentDidMount(){
+    await checkConnection().then(response =>
+        this.setState({connection: response})
+    );
+
+    var prom = isAvailable(serverUrl);
+
+    //if the response of the server contains no status but just the set integer 666 - set the status to 666
+    await prom.then(response => {
+
+        if(response==666){
+          this.setState({status: 666});
+        }
+        else{
+          this.setState({status: response.status});
+          if(response.ok){
+            this.getData(serverUrl, 'news');
+          }
+        }
+    });
 
 
-
-  componentDidMount(){
-    this.getData('https://test-preview.ssi-schaefer.com/blueprint/servlet/service/rss/en-de/80522/feed.rss', 'news');
   }
 
 
@@ -74,9 +97,96 @@ class LiveNewsFeed extends Component {
     the render statement can fire the return of null multiple times until the state is set to true
     */
     if(!this.state.ready){
-      return null;
+
+      //if internetconnection established and server does not answer
+      if (this.state.connection && this.state.status == 666){
+        return(
+          <Container>
+            <Header>
+              <Left>
+                <Button
+                  transparent
+                  onPress={() => this.props.navigation.navigate("DrawerOpen")}
+                >
+                  <Icon name="ios-menu" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>NewsFeed</Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content>
+              <View >
+                <Text style={styles.servermsg}>Server nicht erreichbar</Text>
+              </View>
+            </Content>
+          </Container>
+      );}
+
+
+      //if internetconnection established and server does answer with error
+      else if (this.state.connection && this.state.status != 200 && this.state.status != 666){
+        return(
+          <Container>
+            <Header>
+              <Left>
+                <Button
+                  transparent
+                  onPress={() => this.props.navigation.navigate("DrawerOpen")}
+                >
+                  <Icon name="ios-menu" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>NewsFeed</Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content>
+              <View >
+                <Text style={styles.servermsg}>Error: {this.state.status}</Text>
+              </View>
+            </Content>
+          </Container>
+      );}
+
+      //if internetconnection is not established
+      else if(!this.state.connection){
+        return(
+          <Container>
+            <Header>
+              <Left>
+                <Button
+                  transparent
+                  onPress={() => this.props.navigation.navigate("DrawerOpen")}
+                >
+                  <Icon name="ios-menu" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>NewsFeed</Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content>
+              <View >
+                <Text style={styles.servermsg}>{this.state.status}</Text>
+              </View>
+            </Content>
+          </Container>
+      );}
+
+      else return(
+      <View>
+        <Spinner color='blue' />
+      </View>
+      );
+
     }
-    else{
+
+
+    else if (this.state.ready) {
       let news_text = this.state.news.rss.channel[0].item.map(function(news_text, index){
         return(
           //switching orientation from left to right in relation to the index
