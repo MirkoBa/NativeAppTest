@@ -36,12 +36,7 @@ export async function  isAvailable (url) {
     return Promise
         .race([timeout, request])
         .then(response => {
-          if(response.status >= 200 && response.status <= 300){
-              return(response);
-          }
-          else {
-            return (response);
-          }
+          return (response);
         })
         .catch(error => {
           return (666);
