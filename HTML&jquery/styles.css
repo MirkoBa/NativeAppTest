@@ -1,0 +1,80 @@
+
+input[type=text], input[type=password] {
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: none;
+   border-bottom: 2px solid #4c6eaf;
+   width: 50%;
+}
+
+input[type=text]:focus{
+  background-color: rgba(180, 177, 182, 0.2);
+  border-radius: 4px;
+}
+
+input[type=password]:focus{
+  background-color: rgba(100, 205, 91, 0.2);
+  border-radius: 4px;
+}
+
+.message:focus {
+    width: 90%;
+    background-color: rgba(52, 177, 57, 0.3) !important;
+    border-radius: 4px;
+}
+
+button {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   border: none;
+   cursor: pointer;
+   width: 20%;
+   border-radius: 4px;
+}
+
+.tokenButton{
+  background-color: #4c6eaf;
+}
+
+
+.hidden{
+    visibility: hidden;
+}
+
+p{
+  width: 100%;
+  padding: 14px 20px;
+  margin: 5px 0;
+}
+
+li{
+  padding: 3px 3px;
+  margin: 5px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerContainer{
+  background-color: #4c6eaf;
+  margin: auto;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.tokenContainer{
+  margin-top: 20px;
+  background-color: #4c6eaf;
+  border-radius: 4px;
+  color: white;
+}
+
+.container {
+  margin: left;
+  padding: 10px;
+}

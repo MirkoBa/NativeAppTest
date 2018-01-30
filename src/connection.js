@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-  NetInfo
-} from 'react-native';
 
 import {
   Container,
@@ -21,6 +18,10 @@ import {
   Spinner
 } from "native-base";
 
+import {
+  NetInfo
+} from 'react-native';
+
 import {checkConnection, isAvailable} from './helpers/helpers' ;
 
 
@@ -35,14 +36,11 @@ class connection extends Component {
     }
   }
 
-
-
-
   async componentDidMount(){
     await checkConnection().then(response =>
         this.setState({connection: response})
     );
-    var prom = isAvailable('https://httpstat.us/300');
+    var prom = isAvailable('http://10.151.9.28:3000/Jobs');
 
     //if the response of the server contains no status but just the set integer 666 - set the status to 666
     await prom.then(response => {
@@ -56,6 +54,7 @@ class connection extends Component {
     });
 
   }
+
 
   render() {
 
@@ -110,7 +109,7 @@ class connection extends Component {
           {header}
           <Content>
             <View >
-              <Text>Status: {this.state.status}</Text>
+              <Text>{this.state.status}</Text>
             </View>
           </Content>
         </Container>

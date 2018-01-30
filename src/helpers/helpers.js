@@ -38,6 +38,7 @@ export async function  isAvailable (url) {
         .then(response => {
           return (response);
         })
+        //timeout - connection could not be established - server might be down
         .catch(error => {
           return (666);
         });

@@ -78,9 +78,6 @@ class LiveNewsFeed extends Component {
     //if the response of the server contains no status but just the set integer 666 - set the status to 666
     await prom.then(response => {
 
-      console.log(response);
-      console.log(response.status);
-
         if(response==666){
           this.setState({status: 666});
         }

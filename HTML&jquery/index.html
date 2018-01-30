@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
+
+ <div class="container">
+
+   <div class="headerContainer">
+     <h1>Get Expo Tokens</h1>
+   </div>
+
+   <div>
+     <input type="text" placeholder="Enter Email" id="email">
+     <input type="password" placeholder="Enter Password" id="pw">
+   </div>
+
+   <div>
+     <button type="submit" id="login">Login</button>
+     <button class="hidden" type="submit" id="logout">LogOut</button>
+   </div>
+
+   <br /><br />
+
+   <div>
+     <input type="text" placeholder="Push Message Title" id="title" required>
+     <input class="message" type="text" placeholder="Push Message" id="pushMsg" required>
+    </div>
+
+   <div>
+     <button class="tokenButton" id ="getData">Get Tokens From Firebase</button>
+     <button id ="sendPushMsg">Send Message</button>
+   </div>
+
+
+   <div id="tokenContainer" class="tokenContainer hidden">
+     <p>
+       <ul id ="tokens">
+
+       </ul>
+     </p>
+   </div>
+ </div>
+
+
+ <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="app.js"></script>
+
+</body>
+</html>

@@ -75,19 +75,22 @@ class Login extends Component {
 
   //saves the user to the Authentication section in Firebase
   signUpUser = (email,password) => {
-        if(password.length<6){
-          alert("Passwort muss mindestens 6 Zeichen haben")
-          return;
-        }
         firebase.auth().createUserWithEmailAndPassword(email,password)
         .then(() =>{
             alert ("Hello " + email + " u have been successfully registered");
             this.loginUser(email, password);
         })
-        .catch(() =>{
-            alert ("Authentication failed");
-            return;
-        })
+        .catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          }
+          else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
   }
 
 
