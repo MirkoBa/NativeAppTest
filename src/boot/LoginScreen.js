@@ -28,9 +28,24 @@ const firebaseConfig = {
   messagingSenderId: "931917352103"
 };
 
-//initializes App with the given config
-firebase.initializeApp(firebaseConfig);
-
+/*
+initializes App with the given config
+the try an catch block is necessary because when hot loading is in EXPO enabled, Firebase trys to initialize the App again when changes to the code are saved
+- because this causes an error - the catch block prevents teh app from breaking
+*/
+try
+  {
+    firebase.initializeApp(firebaseConfig);
+  }
+  catch (err)
+  {
+    if(err.code == "app/duplicate-app"){
+      console.log("Failure in initializing " + err.message);
+    }
+    else {
+      console.error(err.message);
+    }
+  }
 
 class Login extends Component {
 
@@ -65,7 +80,7 @@ class Login extends Component {
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
 
-    //stores data to firebase database. Every user has an entry with its ExpoPushToken and teh email address
+    //stores data to firebase database. Every user has an entry with its ExpoPushToken and the email address
     var updates = {}
     updates['/expoToken'] = token
     updates['/userEmail'] = user.email
@@ -97,14 +112,27 @@ class Login extends Component {
 
   //checks firebase for Authentication
   loginUser = (email,password) => {
-    try{
-      firebase.auth().signInWithEmailAndPassword(email,password).then(user => {
+      firebase.auth().signInWithEmailAndPassword(email,password)
+      .then(user => {
         this.registerForPushNotificationsAsync(user);
         this.props.navigation.navigate('Home');
       })
-    }catch(error){
-      console.log(error.toString())
-    }
+      .catch(function(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if(errorCode == 'auth/invalid-email'){
+          alert(errorMessage);
+        }
+        else if (errorCode == 'auth/user-not-found'){
+          alert(errorMessage);
+        }
+        else if(errorCode == 'auth/wrong-password'){
+          alert(errorMessage);
+        }else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
   }
 
 

@@ -13,6 +13,8 @@ import {
 } from "native-base";
 import styles from "./style";
 
+
+// inside of this array, all screens which can be addressed via the Drawer, are stored 
 const datas = [
   {
     name: "Home",

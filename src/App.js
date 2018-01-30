@@ -15,6 +15,11 @@ import connection from './connection'
 
 import LiveNewsFeed from './pages/News/LiveNewsFeed/';
 
+/*
+this const stores logical references to different screens to navigate through the app
+the drawer will be rendered over the actual content
+the view itself is defined in Sidebar
+*/
 const Drawer = DrawerNavigator(
   {
     Home: {screen: Home},
@@ -34,11 +39,12 @@ const Drawer = DrawerNavigator(
   }
 );
 
+
 const AppNavigator = StackNavigator(
   {
     Drawer: { screen: Drawer },
     JobDetails: {screen: JobDetails},
-    NewsDetails : {screen: NewsDetails},
+    NewsDetails : {screen: NewsDetails}
   },
   {
     initialRouteName: "Drawer",

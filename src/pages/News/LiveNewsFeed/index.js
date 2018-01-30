@@ -135,7 +135,6 @@ class LiveNewsFeed extends Component {
       //if internetconnection established and server does answer with error
       else if (this.state.connection && this.state.status != 200 && this.state.status != 666){
 
-
         return(
           <Container>
             {header}
