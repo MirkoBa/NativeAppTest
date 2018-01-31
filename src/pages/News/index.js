@@ -20,6 +20,7 @@ import {Image, StatusBar, Dimensions, TouchableOpacity} from 'react-native';
 import styles from "./styles";
 
 import {ContentSnippet} from './../../helpers/helpers/';
+import Heading from '../Header/';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -55,20 +56,7 @@ class News extends Component {
 
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>News</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Heading title="News"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
 
         <Content scrollEnabled={true}>
           {this.state.data.map((news, index) => (

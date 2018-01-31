@@ -18,7 +18,8 @@ import {
 import {Image, StatusBar, Dimensions, TouchableHighlight} from 'react-native';
 
 
-import styles from "./styles";
+import styles from './styles';
+import Heading from '../../Header';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -35,20 +36,8 @@ export default class NewsDetails extends Component {
 
       <Container style={styles.container}>
 
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate('News')}
-            >
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>News Details</Title>
-          </Body>
-          <Right />
-        </Header>
+      <Heading title="News Details"icon="arrow-back" navigation={this.props.navigation} route="News"/>
+
 
         <Content scrollEnabled={true}>
           <View style={styles.contentcontainer}>

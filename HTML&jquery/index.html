@@ -23,18 +23,23 @@
 
    <div>
      <button type="submit" id="login">Login</button>
-     <button class="hidden" type="submit" id="logout">LogOut</button>
+     <button class="logout hidden" type="submit" id="logout">LogOut</button>
    </div>
 
    <br /><br />
 
    <div>
-     <input type="text" placeholder="Push Message Title" id="title" required>
-     <input class="message" type="text" placeholder="Push Message" id="pushMsg" required>
+     <button class="tokenButton" id ="getData">Get Tokens From Firebase</button>
+   </div>
+
+   <br /><br />
+
+   <div>
+     <input type="text" placeholder="Push Message Title" id="title">
+     <input class="message" type="text" placeholder="Push Message" id="pushMsg">
     </div>
 
    <div>
-     <button class="tokenButton" id ="getData">Get Tokens From Firebase</button>
      <button id ="sendPushMsg">Send Message</button>
    </div>
 

@@ -17,7 +17,8 @@ import {
 } from "native-base";
 import {Image, StatusBar, Dimensions, TouchableOpacity} from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
+import Heading from '../Header/';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -60,25 +61,13 @@ class Jobs extends Component {
   */
   render() {
 
+    console.log(this.props.navigation);
+
       return(
 
         <Container style={styles.container}>
 
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Jobs</Title>
-            </Body>
-            <Right />
-          </Header>
-
+        <Heading title="Jobs" icon ="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
 
 
           <Content scrollEnabled={true}>

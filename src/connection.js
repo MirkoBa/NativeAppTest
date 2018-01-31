@@ -8,8 +8,6 @@ import {
   Text,
   Button,
   Icon,
-  Footer,
-  FooterTab,
   Left,
   Right,
   Body,
@@ -24,6 +22,7 @@ import {
 
 import {checkConnection, isAvailable} from './helpers/helpers' ;
 
+import Heading from './pages/Header/';
 
 class connection extends Component {
 
@@ -58,28 +57,11 @@ class connection extends Component {
 
   render() {
 
-    let header =
-      <Header>
-        <Left>
-          <Button
-            transparent
-            onPress={() => this.props.navigation.navigate("DrawerOpen")}
-          >
-            <Icon name="ios-menu" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Verbindungstest</Title>
-        </Body>
-        <Right />
-      </Header>
-
-
     //if internetconnection established and server does not answer
     if (this.state.connection && this.state.status == 666){
       return(
         <Container>
-          {header}
+          <Heading title="Server nicht erreichbar" icon ="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
           <Content>
             <View >
               <Text>Server nicht erreichbar</Text>
@@ -92,7 +74,7 @@ class connection extends Component {
     else if (this.state.connection && this.state.status == 200 ){
       return(
         <Container>
-          {header}
+          <Heading title="Server nicht erreichbar" icon ="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
           <Content>
             <Text>
               Status 200 OK
@@ -106,7 +88,7 @@ class connection extends Component {
       return(
 
         <Container>
-          {header}
+          <Heading title="Server nicht erreichbar" icon ="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
           <Content>
             <View >
               <Text>{this.state.status}</Text>
@@ -119,7 +101,7 @@ class connection extends Component {
     else if(!this.state.connection){
       return(
         <Container>
-          {header}
+          <Heading title="Server nicht erreichbar" icon ="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
           <Content>
             <View >
               <Text>Keine Internetverbindung</Text>

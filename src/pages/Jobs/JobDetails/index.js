@@ -20,7 +20,8 @@ import HTMLView from 'react-native-htmlview';
 
 import { Constants, MapView } from 'expo';
 
-import styles from "./styles";
+import styles from './styles';
+import Heading from '../../Header';
 
 //these imports are used for building the collapsible content
 import * as Animatable from 'react-native-animatable';
@@ -130,20 +131,8 @@ class JobDetails extends Component {
 
       <Container style={styles.container}>
 
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate('Jobs')}
-            >
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Job Details</Title>
-          </Body>
-          <Right />
-        </Header>
+      <Heading title={params.job.title} icon="arrow-back" navigation={this.props.navigation} route="Jobs"/>
+
 
         <Content scrollEnabled={true}>
 

@@ -9,7 +9,7 @@ import JobDetails from './pages/Jobs/JobDetails/';
 import NewsDetails from './pages/News/NewsDetails/';
 import Todos from './pages/Todos/';
 import Login from './boot/LoginScreen';
-import SideBar from './pages/Sidebar';
+import SideBar from './pages/Sidebar/';
 
 import connection from './connection'
 
@@ -28,7 +28,7 @@ const Drawer = DrawerNavigator(
     Todos: {screen: Todos},
     Login : {screen: Login},
     LiveNewsFeed : {screen: LiveNewsFeed},
-    connection : {screen: connection}
+    connection : {screen: connection},
   },
   {
   initialRouteName: "Home",

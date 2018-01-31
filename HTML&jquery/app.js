@@ -136,7 +136,7 @@
 
     const promise = firebase.auth().signInWithEmailAndPassword(email,password);
     promise.then(
-      setTimeout(logout, 20000)
+      setTimeout(logout, 300000) // logout after 5 Minutes
     );
     promise.catch(
       e=> console.log(e.message));

@@ -25,7 +25,7 @@ import Hyperlink from 'react-native-hyperlink';
 //allows to use calls and e-mail
 import Communications from 'react-native-communications';
 
-import styles from "./styles";
+import styles from './styles';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -38,6 +38,8 @@ const email_adress = 'info.wels@ssi-schaefer.com';
 This class represents the StartPage of the App
 */
 class Home extends Component {
+
+
 
   constructor(){
     super()
@@ -69,6 +71,8 @@ class Home extends Component {
   }
 
   render() {
+
+    console.log(this.props);
 
     //represents the view of the data news on the bottom of the HomeScreen
     let news_text = this.state.news.map(function(news_text, index){

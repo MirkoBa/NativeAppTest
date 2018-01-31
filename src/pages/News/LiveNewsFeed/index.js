@@ -19,6 +19,7 @@ import {
 
 import {TouchableOpacity} from 'react-native';
 import {checkConnection, isAvailable} from '../../../helpers/helpers' ;
+import Heading from '../../Header/';
 
 //allows to use calls, e-mail and the browser
 import Communications from 'react-native-communications';
@@ -95,22 +96,6 @@ class LiveNewsFeed extends Component {
 
   render() {
 
-    let header =
-      <Header>
-        <Left>
-          <Button
-            transparent
-            onPress={() => this.props.navigation.navigate("DrawerOpen")}
-          >
-            <Icon name="ios-menu" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>NewsFeed</Title>
-        </Body>
-        <Right />
-      </Header>
-
 
     /*
     because the fetching of the XML and parsing it to JSON takes longer as wished, null will be returned to wait for data (ready state is false)
@@ -122,7 +107,7 @@ class LiveNewsFeed extends Component {
       if (this.state.connection && this.state.status == 666){
         return(
           <Container>
-              {header}
+              <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>Server nicht erreichbar</Text>
@@ -137,7 +122,7 @@ class LiveNewsFeed extends Component {
 
         return(
           <Container>
-            {header}
+            <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>{this.state.status}</Text>
@@ -150,7 +135,7 @@ class LiveNewsFeed extends Component {
       else if(!this.state.connection){
         return(
           <Container>
-            {header}
+            <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>{this.state.status}</Text>
@@ -163,7 +148,7 @@ class LiveNewsFeed extends Component {
       //this renders a spinner while fetching data is in progress
       else return(
       <Container>
-        {header}
+        <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
         <Content>
           <Spinner color='blue' />
         </Content>
@@ -201,7 +186,7 @@ class LiveNewsFeed extends Component {
 
       return (
       <Container style={styles.container}>
-          {header}
+          <Heading title="NewsFeed"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
         <Content scrollEnabled={true}>
             {news_text}
         </Content>
