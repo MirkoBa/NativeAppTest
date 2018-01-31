@@ -47,7 +47,8 @@
   //setting up all functions to be executed on cliking the different buttons
   $('#getData').click(getData);
   $('#logout').click(logout);
-  $('#sendPushMsg').click(sendPushMsg);
+  $('#sendPushMsgToAllDevices').click(sendPushMsgToAllDevices);
+  $('#sendPushMsgToOnedevice').click(sendPushMsgToOnedevice);
   $('#login').click(login);
 
 
@@ -106,7 +107,7 @@
   }
 
   //the values of title and body will be posted to all ExpoTokens in array 'allTokens'
-  function sendPushMsg(){
+  function sendPushMsgToAllDevices(){
 
         allTokens.forEach(function(entry){
             var post={
@@ -121,6 +122,21 @@
                 data: post
             });
         });
+  }
+
+  //the values of title and body will be posted to one specific ExpoToken
+  function sendPushMsgToOnedevice(){
+    var post={
+      to: $('#ExpoToken').val(),
+      title: $('#title').val(),
+      body: $('#pushMsg').val(),
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://exp.host/--/api/v2/push/send',
+        data: post
+    });
   }
 
   /*
