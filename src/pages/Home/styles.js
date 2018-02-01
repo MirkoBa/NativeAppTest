@@ -5,6 +5,10 @@ const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
 export default {
+  empty:{
+    height:0,
+    width:0,
+  },
   container: {
     backgroundColor: "#fff",
   },
@@ -122,5 +126,11 @@ export default {
       height: deviceWidth*0.9,
       alignContent: 'flex-start',
       justifyContent: 'center',
+  },
+  servermsg:{
+    margin:5,
+    padding:5,
+    fontSize: deviceHeight*0.03,
+    fontWeight: 'bold',
   }
 };

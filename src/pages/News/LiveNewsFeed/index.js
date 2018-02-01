@@ -107,7 +107,7 @@ class LiveNewsFeed extends Component {
       if (this.state.connection && this.state.status == 666){
         return(
           <Container>
-              <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
+              <Heading title="NewsFeed"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>Server nicht erreichbar</Text>
@@ -122,7 +122,7 @@ class LiveNewsFeed extends Component {
 
         return(
           <Container>
-            <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
+            <Heading title="NewsFeed"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>{this.state.status}</Text>
@@ -135,7 +135,7 @@ class LiveNewsFeed extends Component {
       else if(!this.state.connection){
         return(
           <Container>
-            <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
+            <Heading title="NewsFeed"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
             <Content>
               <View >
                 <Text style={styles.servermsg}>{this.state.status}</Text>
@@ -144,11 +144,11 @@ class LiveNewsFeed extends Component {
           </Container>
       );}
 
-      //if device hat internetconnection and the serve is responding with ok
+      //if device has internetconnection and the server is responding with ok
       //this renders a spinner while fetching data is in progress
       else return(
       <Container>
-        <Heading title="NewsFeed"icon="arrow-back" navigation={this.props.navigation} route="DrawerOpen"/>
+        <Heading title="NewsFeed"icon="ios-menu" navigation={this.props.navigation} route="DrawerOpen"/>
         <Content>
           <Spinner color='blue' />
         </Content>

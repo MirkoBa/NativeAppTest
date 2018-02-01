@@ -34,11 +34,14 @@ button {
    border-radius: 4px;
 }
 
-.blueButton{
+.blueButtonBig{
   background-color: #4c6eaf;
   width: 50%;
 }
 
+.blueButtonSmall{
+  background-color: #4c6eaf;
+}
 
 .hidden{
     visibility: hidden;

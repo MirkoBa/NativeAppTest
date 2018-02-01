@@ -28,7 +28,7 @@ export async function checkConnection(){
 //returns different outputs in relation to the status of the given server
 export async function  isAvailable (url) {
     const timeout = new Promise((resolve, reject) => {
-        setTimeout(reject, 800, 'Request timed out');
+        setTimeout(reject, 900, 'Request timed out');
     });
 
     const request = fetch(url);
