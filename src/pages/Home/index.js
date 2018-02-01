@@ -72,7 +72,6 @@ class Home extends Component {
 
   render() {
 
-    console.log(this.props);
 
     //represents the view of the data news on the bottom of the HomeScreen
     let news_text = this.state.news.map(function(news_text, index){
